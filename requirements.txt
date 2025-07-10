@@ -1,0 +1,10 @@
+timm
+transformers
+datasets
+tokenizers
+qrcode[pil]
+pillow
+onnx
+onnxruntime
+albumentations
+scikit-learn
