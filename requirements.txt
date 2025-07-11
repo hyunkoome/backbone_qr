@@ -4,7 +4,10 @@ datasets
 tokenizers
 qrcode[pil]
 pillow
+treepoem
+segno
 onnx
 onnxruntime
 albumentations
 scikit-learn
+
