@@ -1,4 +1,4 @@
-timm
+#timm
 transformers
 datasets
 tokenizers
@@ -6,8 +6,11 @@ qrcode[pil]
 pillow
 treepoem
 segno
-onnx
-onnxruntime
 albumentations
 scikit-learn
-
+timm==0.9.6
+tensorboardX==2.6.2.2
+onnx==1.14.1
+onnx_graphsurgeon==0.5.2
+onnxruntime==1.15.1
+polygraphy==0.48.1
