@@ -9,6 +9,7 @@ segno
 albumentations
 scikit-learn
 timm==0.9.6
+tensorboard==2.19.0
 tensorboardX==2.6.2.2
 onnx==1.14.1
 onnx_graphsurgeon==0.5.8

@@ -41,6 +41,7 @@ from utils.datasets import imagenet_lmdb_dataset
 from tensorboard import TensorboardLogger
 from models.faster_vit import *
 from models.faster_vit_any_res import *
+from utils.checkpoint import load_pretrained_ignoring_head
 
 try:
     from apex import amp
@@ -425,19 +426,36 @@ def main():
                         "Install NVIDA apex or upgrade to PyTorch 1.6")
 
     utils.random_seed(args.seed, args.rank)
+    # model = create_model(
+    #     args.model,
+    #     pretrained=args.pretrained,
+    #     num_classes=args.num_classes,
+    #     global_pool=args.gp,
+    #     bn_momentum=args.bn_momentum,
+    #     bn_eps=args.bn_eps,
+    #     scriptable=args.torchscript,
+    #     checkpoint_path=args.initial_checkpoint,
+    #     attn_drop_rate=args.attn_drop_rate,
+    #     drop_rate=args.drop_rate,
+    #     drop_path_rate=args.drop_path)
+
+    # (1) 모델 먼저 생성
     model = create_model(
         args.model,
-        pretrained=args.pretrained,
+        pretrained=False,
         num_classes=args.num_classes,
+        img_size=args.input_size[-1],  # 224
         global_pool=args.gp,
         bn_momentum=args.bn_momentum,
         bn_eps=args.bn_eps,
         scriptable=args.torchscript,
-        checkpoint_path=args.initial_checkpoint,
         attn_drop_rate=args.attn_drop_rate,
         drop_rate=args.drop_rate,
         drop_path_rate=args.drop_path)
-    
+
+    # (2) checkpoint 로드 및 엄격하지 않게 로딩
+    load_pretrained_ignoring_head(model, args.initial_checkpoint)
+
     if args.bfloat:
         args.dtype = torch.bfloat16
     else:
