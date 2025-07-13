@@ -11,3 +11,5 @@ local
 QR_v1_to_v10
 QR
 ImagenetQR
+*.pth.tar
+*.pth

@@ -4,7 +4,14 @@ import numpy as np
 import torch
 import torchvision.datasets as dset
 import torchvision.transforms as transforms
-from torch._utils import _accumulate
+# 교체 전:
+# from torch._utils import _accumulate
+
+# 교체 후:
+import itertools
+def _accumulate(iterable):
+    return list(itertools.accumulate(iterable))
+
 from timm.data import IterableImageDataset, ImageDataset, create_loader, resolve_data_config, Mixup, FastCollateMixup, AugMixDataset
 
 
