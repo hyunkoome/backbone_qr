@@ -13,3 +13,5 @@ QR
 ImagenetQR
 *.tar
 *.pth
+outputs/logs/*
+outputs/checkpoints/*
